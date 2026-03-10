@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="team_colors">
+        <item>Blau / Weiß</item>
+        <item>Dunkel Blau / Weiß</item>
+        <item>Gelb / Schwarz</item>
+        <item>Rot / Weiß</item>
+        <item>Schwarz / Weiß</item>
+        <item>Schwarz / Gelb</item>
+        <item>Schwarz / Rot</item>
+        <item>Weiß / Rot</item>
+        <item>Weiß / Schwarz</item>
+    </string-array>
+</resources>
+

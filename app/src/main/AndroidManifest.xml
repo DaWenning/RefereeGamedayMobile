@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
+        android:name=".CompanionApplication"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RefereeGamedayCompanion">
+
+        <!-- Don't force installation only on Wear devices -->
+        <uses-library android:name="com.google.android.wearable" android:required="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -22,6 +26,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="de.recklessgreed.football.refereegamedaycompanion.settings.SettingsWearableListenerService"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="de.recklessgreed.football.refereegamedaycompanion.actionrecords.ActionListenerService"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <data
+                    android:scheme="wear"
+                    android:host="*"
+                    android:pathPrefix="/actions" />
+
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

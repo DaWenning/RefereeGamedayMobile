@@ -10,4 +10,34 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="menu_compensation">Vergütung</string>
+    <string name="menu_wearos_settings">Spiel Bedingungen</string>
+    <string name="menu_last_game_results">Letzte Spiele</string>
+
+    <string name="hometeam">Heim Team</string>
+    <string name="hometeamColor">Farbe:</string>
+    <string name="hometeamName">Team: </string>
+    <string name="hometeamColorDefault">Blau</string>
+    <string name="hometeamDefault">Heim</string>
+
+    <string name="awayteam">Auswärts Team</string>
+    <string name="awayteamColor">Farbe:</string>
+    <string name="awayteamName">Team: </string>
+    <string name="awayteamColorDefault">Rot</string>
+    <string name="awayteamDefault">Ausw</string>
+
+    <string name="timeLabel">Zeiten</string>
+
+
+    <string name="lengthPerPeriod">Länge pro Spielzeit:</string>
+    <string name="defaultLengthPerPeriod">12</string>
+
+    <string name="numberOfPeriods">Anzahl an Perioden:</string>
+    <string name="defaultNumberOfPeriods">4</string>
+
+    <string name="timeoutsPerHalf">TimeOuts pro Halbzeit:</string>
+    <string name="defaulttimeoutsPerHalf">3</string>
+
+    <string name="save">Speichern</string>
 </resources>

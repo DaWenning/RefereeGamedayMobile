@@ -1,0 +1,131 @@
+{
+  "tasks": [
+    {
+      "id": "phone-add-dependency",
+      "priority": "high",
+      "description": "Stelle sicher, dass das Phone-Modul die Wearable Play Services dependency hat.",
+      "apply_to": "phone/app/build.gradle",
+      "actions": [
+        {
+          "type": "ensure_dependency",
+          "maven_coordinate": "com.google.android.gms:play-services-wearable:18.0.0",
+          "gradle_configuration": "implementation"
+        }
+      ],
+      "tests": [
+        {
+          "type": "compile",
+          "command": "./gradlew :app:assembleDebug",
+          "expect": "Build completes without unresolved symbol errors for com.google.android.gms.wearable"
+        }
+      ]
+    },
+    {
+      "id": "phone-create-wear-settings-sender",
+      "priority": "high",
+      "description": "Erzeuge eine Hilfsklasse, die Settings als persistenten DataItem an die Watch pusht.",
+      "apply_to": "phone module (package matching phone app, e.g. de.recklessgreed.football.refereegamedaycompanion)",
+      "create_files": [
+        {
+          "path": "app/src/main/java/de/recklessgreed/football/refereegamedaycompanion/wear/PhoneWearSettingsSender.java",
+          "content_template": "class PhoneWearSettingsSender { public static void sendSettingsToWear(Context context, int timeoutsPerHalf, String homeTeamName, String awayTeamName) { /* PutDataMapRequest to '/settings' with keys: timeoutsPerHalf:int, homeTeamName:string, awayTeamName:string, timestamp:long */ } }"
+        }
+      ],
+      "api_contract": {
+        "class": "PhoneWearSettingsSender",
+        "static_methods": [
+          {
+            "signature": "public static void sendSettingsToWear(Context context, int timeoutsPerHalf, @Nullable String homeTeamName, @Nullable String awayTeamName)",
+            "behavior": "Packt keys in PutDataMapRequest('/settings'), setzt 'timestamp', ruft Wearable.getDataClient(context).putDataItem(request), loggt success/failure"
+          }
+        ],
+        "data_item_path": "/settings",
+        "data_keys": {
+          "timeoutsPerHalf": "int",
+          "homeTeamName": "String (nullable)",
+          "awayTeamName": "String (nullable)",
+          "timestamp": "long (System.currentTimeMillis())"
+        },
+        "notes": "Setze PutDataRequest.setUrgent() um schnellere Übertragung zu forcieren. Verwende konsistente Log-Tag 'SettingsSyncPhone'."
+      },
+      "tests": [
+        {
+          "type": "manual",
+          "steps": [
+            "Auf Phone: rufe sendSettingsToWear(...) direkt nach Settings-Änderung auf.",
+            "Auf Watch: überwache Logcat (Tag 'WearSettingsSync') und prüfe, dass applySettings ausgeführt wurde."
+          ],
+          "expected_logs": [
+            "Settings pushed to wear: <uri>",
+            "WearSettingsSync: Applying settings: timeoutsPerHalf=..."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phone-call-sender-on-provider-update",
+      "priority": "high",
+      "description": "Rufe PhoneWearSettingsSender.sendSettingsToWear(...) immer dann auf, wenn Settings in der Phone-App geschrieben/updated werden.",
+      "apply_to": "Phone app: SettingsProvider.insert/update or SettingsActivity where settings are changed",
+      "actions": [
+        {
+          "type": "insert_call",
+          "location_hint": "Am Ende von SettingsProvider.insert(...) und SettingsProvider.update(...), nach erfolgreichem DB-write",
+          "code_snippet": "PhoneWearSettingsSender.sendSettingsToWear(context, timeoutsPerHalf, homeTeamName, awayTeamName);"
+        }
+      ],
+      "tests": [
+        {
+          "type": "manual",
+          "steps": [
+            "Ändere Setting in Phone app.",
+            "Prüfe Logcat: Phone loggt 'Settings pushed to wear' und Watch loggt 'Applying settings'."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phone-implement-message-responder",
+      "priority": "medium",
+      "description": "Optional: implementiere MessageClient listener, damit die Uhr aktiv Settings anfordern kann.",
+      "apply_to": "phone module",
+      "api_contract": {
+        "listener_interface": "com.google.android.gms.wearable.MessageClient.OnMessageReceivedListener",
+        "expected_message_path": "/request_settings",
+        "behavior_on_message": "read current settings from local provider and call PhoneWearSettingsSender.sendSettingsToWear(context, ...)"
+      },
+      "create_files": [
+        {
+          "path": "app/src/main/java/de/recklessgreed/football/refereegamedaycompanion/wear/PhoneWearMessageListener.java",
+          "content_template": "class PhoneWearMessageListener implements MessageClient.OnMessageReceivedListener { public void onMessageReceived(MessageEvent event) { if (\"/request_settings\".equals(event.getPath())) { // read settings from provider then call PhoneWearSettingsSender.sendSettingsToWear(...) } } }"
+        }
+      ],
+      "tests": [
+        {
+          "type": "manual",
+          "steps": [
+            "Auf Watch: sende Message via MessageClient to '/request_settings'.",
+            "Auf Phone: prüfe, dass Phone empfängt und 'Settings pushed to wear' loggt."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phone-logging-and-expected-tags",
+      "priority": "low",
+      "description": "Verwende konsistente Log-Tags, damit Tests/Agenten Logs leicht erkennen.",
+      "convention": {
+        "phone_sender_tag": "SettingsSyncPhone",
+        "watch_receiver_tag": "WearSettingsSync"
+      },
+      "tests": [
+        {
+          "type": "logcheck",
+          "command": "adb logcat -s SettingsSyncPhone WearSettingsSync",
+          "expect": "Phone logs 'Settings pushed to wear', Watch logs 'Applying settings' and 'Updated local provider'"
+        }
+      ]
+    }
+  ]
+}
+

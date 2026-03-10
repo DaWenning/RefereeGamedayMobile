@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'de.recklessgreed.football.refereegamedaycompanion.mobile'
+    namespace 'de.recklessgreed.football.refereegamedaycompanion'
     compileSdk 36
 
     defaultConfig {
-        applicationId "de.recklessgreed.football.refereegamedaycompanion.mobile"
+        applicationId "de.recklessgreed.football.refereegamedaycompanion"
         minSdk 26
         targetSdk 36
         versionCode 1
@@ -43,4 +43,5 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    implementation libs.play.services.wearable
 }
