@@ -40,4 +40,11 @@
     <string name="defaulttimeoutsPerHalf">3</string>
 
     <string name="save">Speichern</string>
+
+    <string name="clear_actions_button">Alle Aktionen löschen</string>
+    <string name="no_actions">Keine Aktionen vorhanden.</string>
+
+    <!-- Confirmation dialog for clearing actions -->
+    <string name="clear_actions_confirm_title">Löschen bestätigen</string>
+    <string name="clear_actions_confirm_message">Möchtest du wirklich alle gespeicherten Aktionen löschen?</string>
 </resources>

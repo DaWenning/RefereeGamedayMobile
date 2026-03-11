@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +38,21 @@ public class LastGameResultsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Set up the clear button
+        binding.clearActionsButton.setOnClickListener(v -> {
+            // Show confirmation dialog before clearing all actions
+            new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    .setTitle(getString(R.string.clear_actions_confirm_title))
+                    .setMessage(getString(R.string.clear_actions_confirm_message))
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        ActionRepository repo = new ActionRepository(requireContext());
+                        repo.clearAll();
+                        loadActionRecords();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+        });
     }
 
     @Override
@@ -72,15 +89,57 @@ public class LastGameResultsFragment extends Fragment {
 
     public void loadActionRecords() {
 
-        // Placeholder for loading or refreshing data when this fragment becomes visible.
-        // Intentionally left empty for now.
-
         ActionRepository repo = new ActionRepository(requireContext());
         List<ActionRecord> actions = repo.loadAll();
 
         Log.d("LastGameResultsFragment", "Loaded " + actions.size() + " action records.");
 
+        // Defensive checks for binding
+        if (binding == null) {
+            Log.w(TAG, "Binding is null, cannot display actions");
+            return;
+        }
 
+        LinearLayout container = binding.actionContainer;
+
+        container.removeAllViews();
+
+        if (actions.isEmpty()) {
+            TextView empty = new TextView(requireContext());
+            empty.setText(getString(R.string.no_actions));
+            empty.setPadding(16, 8, 16, 8);
+            container.addView(empty);
+            return;
+        }
+
+        for (ActionRecord record : actions) {
+            TextView tv = new TextView(requireContext());
+            tv.setText(formatRecord(record));
+            tv.setPadding(16, 12, 16, 12);
+            tv.setTextSize(16);
+            container.addView(tv);
+        }
+
+    }
+
+    private String formatRecord(ActionRecord r) {
+        if (r == null) return "(null)";
+        // try to use common getters if available, otherwise fallback to toString
+        try {
+            String UUID = r.getId() != null ? r.getId() : "n/a";
+
+            String time = r.getReadableTimestamp();
+            String type = r.getActionType() != null ? r.getActionType() : "";
+
+            Integer period = r.getPeriod();
+            Integer remaining = r.getRemainingTimeInPeriod();
+
+
+
+            return UUID + "\n" + time + " — " + type + "\n" + "Periode: " + (period != null ? period : "n/a") + ", Verbleibende Zeit: " + (remaining != null ? remaining + "s" : "n/a");
+        } catch (Throwable t) {
+            return r.toString();
+        }
     }
 
     @Override
