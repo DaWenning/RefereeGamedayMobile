@@ -126,17 +126,27 @@ public class LastGameResultsFragment extends Fragment {
         if (r == null) return "(null)";
         // try to use common getters if available, otherwise fallback to toString
         try {
-            String UUID = r.getId() != null ? r.getId() : "n/a";
-
-            String time = r.getReadableTimestamp();
+            String time = r.getReadableTimestamp(false);
+            String gameId = r.getGameId() != null ? r.getGameId() : "n/a";
             String type = r.getActionType() != null ? r.getActionType() : "";
+
+            Integer teamId = r.getTeamId() != null ? r.getTeamId().intValue() : null;
+            String team = "";
+            if (teamId != null && teamId == 0) { team = " (HEIM)"; }
+            else if (teamId != null && teamId == 1) { team = " (GAST)"; }
 
             Integer period = r.getPeriod();
             Integer remaining = r.getRemainingTimeInPeriod();
+            String remainingText = "n/a";
+            if (remaining != null) {
+                int minutes = remaining / 60;
+                int seconds = remaining % 60;
+                remainingText = String.format("%d:%02d", minutes, seconds);
+            }
 
 
 
-            return UUID + "\n" + time + " — " + type + "\n" + "Periode: " + (period != null ? period : "n/a") + ", Verbleibende Zeit: " + (remaining != null ? remaining + "s" : "n/a");
+            return gameId + "\n" + time + " — " + type + team + "\n" + "Periode: " + (period != null ? period : "n/a") + ", Verbleibende Zeit: " + remainingText;
         } catch (Throwable t) {
             return r.toString();
         }

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 public class ActionRecord {
 
     public String id;          // eindeutig (UUID)
+    public String gameId;
     public long timestamp;     // epoch millis
     public Long teamId;        // optional, z.B. für Tore oder Timeout-Zuordnung
     public String actionType;  // z.B. "GOAL", "TIMEOUT"
@@ -19,6 +20,7 @@ public class ActionRecord {
 
     public ActionRecord(JSONObject object) {
         this.id = object.optString("id", object.optString("id", "unknown"));
+        this.gameId = object.optString("game_id", "unknown");
         this.timestamp = object.optLong("timestamp", object.optLong("time", -1));
         this.teamId = object.has("team_id") ? object.optLong("team_id") : null;
         this.actionType = object.optString("action_type", "UNKNOWN");
@@ -30,6 +32,7 @@ public class ActionRecord {
     public DataMap toDataMap() {
         DataMap map = new DataMap();
         map.putString("id", id);
+        map.putString("game_id", gameId);
         map.putLong("timestamp", timestamp);
         map.putLong("team_id", teamId);
         map.putString("action_type", actionType);
@@ -42,6 +45,7 @@ public class ActionRecord {
     public static ActionRecord fromDataMap(DataMap map) {
         ActionRecord r = new ActionRecord();
         r.id = map.getString("id");
+        r.gameId = map.getString("game_id");
         r.timestamp = map.getLong("timestamp");
         r.teamId = map.getLong("team_id");
         r.actionType = map.getString("action_type");
@@ -55,6 +59,7 @@ public class ActionRecord {
         JSONObject returner = new JSONObject();
         try {
             returner.put("id", id);
+            returner.put("game_id", gameId);
             returner.put("timestamp", timestamp);
             if (teamId != null) returner.put("team_id", teamId);
             returner.put("action_type", actionType);
@@ -70,13 +75,21 @@ public class ActionRecord {
         return id;
     }
 
+    public String getGameId() {
+        return gameId;
+    }
+
     public long getTimestamp() {
         return timestamp;
     }
 
-    public String getReadableTimestamp() {
+    public String getReadableTimestamp(boolean withDate) {
         // Optional: Formatieren des Timestamps in ein lesbares Datum/Uhrzeit
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm:ss");
+        if (withDate)
+            sdf = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
         return sdf.format(new java.util.Date(timestamp));
     }
 
