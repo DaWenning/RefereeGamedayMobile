@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.gms.wearable.DataClient;
 import com.google.android.gms.wearable.DataEvent;
@@ -27,6 +28,10 @@ public class CompanionApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Force light mode for the entire app (disable night mode)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         Log.d(TAG, "Application onCreate - registering wearable listeners");
 
         // Create and register the action data listener
@@ -66,4 +71,3 @@ public class CompanionApplication extends Application {
         }
     }
 }
-
