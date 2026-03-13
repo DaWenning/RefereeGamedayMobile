@@ -31,7 +31,7 @@ public class WearosSettingsFragment extends Fragment {
     private NavController.OnDestinationChangedListener destinationChangedListener;
 
     private EditText hometeamNameInp, awayteamNameInp,
-            lengthPerPeriodInp, numberOfPeriodsInp, timeoutsPerHalfInp;
+            lengthPerPeriodInp, lengthOfHalftime, numberOfPeriodsInp, timeoutsPerHalfInp;
     private Button saveBtn;
 
     private Spinner hometeamColorSpinner, awayteamColorSpinner;
@@ -57,6 +57,7 @@ public class WearosSettingsFragment extends Fragment {
         awayteamNameInp = binding.awayteamNameInp;
         awayteamColorSpinner = binding.awayteamColorInp;
         lengthPerPeriodInp = binding.lengthPerPeriodInp;
+        lengthOfHalftime = binding.lengthOfHalftimeInp;
         numberOfPeriodsInp = binding.numberOfPeriodsInp;
         timeoutsPerHalfInp = binding.timeoutsPerHalfInp;
         saveBtn = binding.saveButton;
@@ -113,8 +114,10 @@ public class WearosSettingsFragment extends Fragment {
         String awayTeamName = current.guestName;
         int awayTeamColor = current.guestColorArgb;
         String lengthPerPeriod = String.valueOf(current.periodLengthSec);
+        String halftimeLength = String.valueOf(current.halfTimeLengthSec);
         String numberOfPeriods = String.valueOf(current.periodCount);
         String timeoutsPerHalf = String.valueOf(current.timeoutsPerHalf);
+
 
         hometeamNameInp.setText(homeTeamName);
         awayteamNameInp.setText(awayTeamName);
@@ -124,6 +127,7 @@ public class WearosSettingsFragment extends Fragment {
         awayteamColorSpinner.setSelection(awayTeamColor);
 
         lengthPerPeriodInp.setText(lengthPerPeriod);
+        lengthOfHalftime.setText(halftimeLength);
         numberOfPeriodsInp.setText(numberOfPeriods);
         timeoutsPerHalfInp.setText(timeoutsPerHalf);
 
@@ -143,11 +147,13 @@ public class WearosSettingsFragment extends Fragment {
         int lengthPerPeriod = Integer.parseInt(lengthPerPeriodInp.getText().toString());
         int numberOfPeriods = Integer.parseInt(numberOfPeriodsInp.getText().toString());
         int timeoutsPerHalf = Integer.parseInt(timeoutsPerHalfInp.getText().toString());
+        int halftimeLength = Integer.parseInt(lengthOfHalftime.getText().toString());
 
         MatchSettings newSettings = new MatchSettings(
                 homeTeamName, homeTeamColor, awayTeamName, awayTeamColor,
-                lengthPerPeriod, numberOfPeriods, timeoutsPerHalf, System.currentTimeMillis(), "PHONE"
-                );
+                lengthPerPeriod, halftimeLength, numberOfPeriods, timeoutsPerHalf,
+                System.currentTimeMillis(), "PHONE"
+        );
 
         storage.save(newSettings);
         sync.pushSettings(newSettings, true);

@@ -184,6 +184,28 @@
                 android:text="@string/defaultLengthPerPeriod" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/lengthOfHalftime"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Länge der Halbzeitpause" />
+            <EditText
+                android:id="@+id/lengthOfHalftimeInp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="15" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

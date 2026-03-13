@@ -26,6 +26,7 @@ public class SettingsStorage {
         s.periodLengthSec = prefs.getInt(SettingsContract.KEY_PERIOD_LENGTH_SEC, s.periodLengthSec);
         s.periodCount = prefs.getInt(SettingsContract.KEY_PERIOD_COUNT, s.periodCount);
         s.timeoutsPerHalf = prefs.getInt(SettingsContract.KEY_TIMEOUTS_PER_HALF, s.timeoutsPerHalf);
+        s.halfTimeLengthSec = prefs.getInt(SettingsContract.KEY_HALFTIME_LENGTH_SEC, s.halfTimeLengthSec);
 
         s.updatedAt = prefs.getLong(SettingsContract.KEY_UPDATED_AT, 0L);
         s.updatedBy = prefs.getString(SettingsContract.KEY_UPDATED_BY, "");
@@ -44,6 +45,7 @@ public class SettingsStorage {
                 .putInt(SettingsContract.KEY_PERIOD_LENGTH_SEC, s.periodLengthSec)
                 .putInt(SettingsContract.KEY_PERIOD_COUNT, s.periodCount)
                 .putInt(SettingsContract.KEY_TIMEOUTS_PER_HALF, s.timeoutsPerHalf)
+                .putInt(SettingsContract.KEY_HALFTIME_LENGTH_SEC, s.halfTimeLengthSec)
 
                 .putLong(SettingsContract.KEY_UPDATED_AT, s.updatedAt)
                 .putString(SettingsContract.KEY_UPDATED_BY, s.updatedBy)

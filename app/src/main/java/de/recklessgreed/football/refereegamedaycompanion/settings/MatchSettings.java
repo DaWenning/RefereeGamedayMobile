@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.wearable.DataMap;
 
 public class MatchSettings {
-
     public String homeName;
     public int homeColorArgb;
 
@@ -13,6 +12,7 @@ public class MatchSettings {
     public int periodLengthSec;
     public int periodCount;
     public int timeoutsPerHalf;
+    public int halfTimeLengthSec;
 
     public long updatedAt;     // epoch millis
     public String updatedBy;   // "phone"/"wear"/nodeId
@@ -23,7 +23,9 @@ public class MatchSettings {
         guestName = "Gast";
         homeColorArgb = 1;   // Blau
         guestColorArgb = 3;  // Rot
-        periodLengthSec = 20 * 60;    // 20 Minuten
+        periodLengthSec = 12 * 60;    // 20 Minuten
+        halfTimeLengthSec = 15 * 60;
+
         periodCount = 2;
         timeoutsPerHalf = 1;
         updatedAt = 0L;
@@ -31,31 +33,18 @@ public class MatchSettings {
     }
 
     public MatchSettings(String homeName, int homeColorArgb, String guestName, int guestColorArgb,
-                         int periodLengthSec, int periodCount, int timeoutsPerHalf,
+                         int periodLengthSec, int halfTimeLengthSec, int periodCount, int timeoutsPerHalf,
                          long updatedAt, String updatedBy) {
         this.homeName = homeName;
         this.homeColorArgb = homeColorArgb;
         this.guestName = guestName;
         this.guestColorArgb = guestColorArgb;
         this.periodLengthSec = periodLengthSec;
+        this.halfTimeLengthSec = halfTimeLengthSec;
         this.periodCount = periodCount;
         this.timeoutsPerHalf = timeoutsPerHalf;
         this.updatedAt = updatedAt;
         this.updatedBy = updatedBy;
-    }
-
-    public MatchSettings copy() {
-        MatchSettings c = new MatchSettings();
-        c.homeName = homeName;
-        c.homeColorArgb = homeColorArgb;
-        c.guestName = guestName;
-        c.guestColorArgb = guestColorArgb;
-        c.periodLengthSec = periodLengthSec;
-        c.periodCount = periodCount;
-        c.timeoutsPerHalf = timeoutsPerHalf;
-        c.updatedAt = updatedAt;
-        c.updatedBy = updatedBy;
-        return c;
     }
 
     public DataMap toDataMap() {
@@ -68,6 +57,7 @@ public class MatchSettings {
         m.putInt(SettingsContract.KEY_PERIOD_LENGTH_SEC, periodLengthSec);
         m.putInt(SettingsContract.KEY_PERIOD_COUNT, periodCount);
         m.putInt(SettingsContract.KEY_TIMEOUTS_PER_HALF, timeoutsPerHalf);
+        m.putInt(SettingsContract.KEY_HALFTIME_LENGTH_SEC, halfTimeLengthSec);
 
         m.putLong(SettingsContract.KEY_UPDATED_AT, updatedAt);
         m.putString(SettingsContract.KEY_UPDATED_BY, updatedBy);
@@ -84,6 +74,7 @@ public class MatchSettings {
         s.periodLengthSec = m.getInt(SettingsContract.KEY_PERIOD_LENGTH_SEC, s.periodLengthSec);
         s.periodCount = m.getInt(SettingsContract.KEY_PERIOD_COUNT, s.periodCount);
         s.timeoutsPerHalf = m.getInt(SettingsContract.KEY_TIMEOUTS_PER_HALF, s.timeoutsPerHalf);
+        s.halfTimeLengthSec = m.getInt(SettingsContract.KEY_HALFTIME_LENGTH_SEC, s.halfTimeLengthSec);
 
         s.updatedAt = m.getLong(SettingsContract.KEY_UPDATED_AT, 0L);
         s.updatedBy = m.getString(SettingsContract.KEY_UPDATED_BY, "");

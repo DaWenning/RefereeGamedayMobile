@@ -17,6 +17,7 @@ public final class SettingsContract {
     public static final String KEY_PERIOD_LENGTH_SEC = "period_length_sec";
     public static final String KEY_PERIOD_COUNT = "period_count";
     public static final String KEY_TIMEOUTS_PER_HALF = "timeouts_per_half";
+    public static final String KEY_HALFTIME_LENGTH_SEC = "halftime_length_sec";
 
     // Konfliktlösung / Metadaten
     public static final String KEY_UPDATED_AT = "updated_at";   // long epoch millis

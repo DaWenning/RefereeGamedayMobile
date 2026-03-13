@@ -38,6 +38,13 @@
                 android:text="Kilometer" />
 
             <TextView
+                android:id="@+id/header_kilometer_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="KM Geld" />
+
+            <TextView
                 android:id="@+id/header_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -74,6 +81,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/referee_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/referee_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,7 +102,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -117,6 +138,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/umpire_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/umpire_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -124,7 +159,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -160,6 +195,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/linejudge_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/linejudge_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -167,7 +216,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -203,6 +252,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/linesman_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/linesman_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -210,7 +273,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -218,8 +281,6 @@
                 />
 
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,6 +309,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/backjudge_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/backjudge_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -255,7 +330,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -263,7 +338,6 @@
                 />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -292,6 +366,20 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/sidejudge_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
                 android:id="@+id/sidejudge_result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -299,7 +387,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -307,7 +395,6 @@
                 />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -333,7 +420,23 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+
+
+                />
+
+            <EditText
+                android:id="@+id/fieldjudge_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+                android:focusable="false"
+                android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false" />
 
             <EditText
                 android:id="@+id/fieldjudge_result"
@@ -343,7 +446,7 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -351,10 +454,6 @@
                 />
 
         </LinearLayout>
-
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -365,7 +464,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Centerjudge" />
+                android:text="Centerjudge"
+                />
 
             <EditText
                 android:id="@+id/centerjudge_compensation"
@@ -380,7 +480,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                />
+
+            <EditText
+                android:id="@+id/centerjudge_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+                android:focusable="false"
+                android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"/>
 
             <EditText
                 android:id="@+id/centerjudge_result"
@@ -391,6 +505,7 @@
                 android:inputType="number"
 
                 android:focusable="false"
+                android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
@@ -417,12 +532,32 @@
                 android:layout_weight="1"
                 android:text="" />
             <EditText
-                android:id="@+id/resultline__kilometers"
+                android:id="@+id/resultline_kilometers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+
+                android:focusable="false"
+                android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+
+            <EditText
+                android:id="@+id/resultline_kilometermoney"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+                android:focusable="false"
+                android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"/>
 
             <EditText
                 android:id="@+id/resultline_result"
@@ -432,12 +567,158 @@
                 android:ems="10"
                 android:inputType="number"
 
-                android:focusable="false"
+                android:focusable="false" android:background="@color/light"
                 android:focusableInTouchMode="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-
                 />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/calculateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Berechnen ..." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/firstCar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="1. Fahrzeug" />
+
+            <EditText
+                android:id="@+id/firstCar_km"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <EditText
+                android:id="@+id/firstCar_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <TextView
+                android:id="@+id/firstCar_spacer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/secondCar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="2. Fahrzeug" />
+
+            <EditText
+                android:id="@+id/secondCar_km"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <EditText
+                android:id="@+id/secondCar_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <TextView
+                android:id="@+id/secondCar_spacer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/thirdCar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="3. Fahrzeug" />
+
+            <EditText
+                android:id="@+id/thirdCar_km"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false" android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <EditText
+                android:id="@+id/thirdCar_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+
+                android:focusable="false"
+                android:background="@color/light"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                />
+            <TextView
+                android:id="@+id/thirdCar_spacer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
 
         </LinearLayout>
 

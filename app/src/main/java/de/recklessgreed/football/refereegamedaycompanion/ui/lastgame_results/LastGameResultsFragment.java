@@ -14,7 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.recklessgreed.football.refereegamedaycompanion.R;
 import de.recklessgreed.football.refereegamedaycompanion.actionrecords.ActionRecord;
@@ -28,6 +30,8 @@ public class LastGameResultsFragment extends Fragment {
 
     private FragmentGameactionsBinding binding;
     private NavController.OnDestinationChangedListener destinationChangedListener;
+
+    private Map<String, List<ActionRecord>> recordsByGameId;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -92,6 +96,8 @@ public class LastGameResultsFragment extends Fragment {
         ActionRepository repo = new ActionRepository(requireContext());
         List<ActionRecord> actions = repo.loadAll();
 
+        recordsByGameId = new HashMap<>();
+
         Log.d("LastGameResultsFragment", "Loaded " + actions.size() + " action records.");
 
         // Defensive checks for binding
@@ -118,6 +124,13 @@ public class LastGameResultsFragment extends Fragment {
             tv.setPadding(16, 12, 16, 12);
             tv.setTextSize(16);
             container.addView(tv);
+
+            String gameId = record.getGameId() != null ? record.getGameId() : "n/a";
+            if (recordsByGameId.containsKey(gameId)) {
+                recordsByGameId.get(gameId).add(record);
+            } else {
+                recordsByGameId.put(gameId, new java.util.ArrayList<>(List.of(record)));
+            }
         }
 
     }
